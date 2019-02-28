@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class WallsManagerScript : MonoBehaviour {
     public Rigidbody[] Walls;
     public SoulScript soul;
     public Image LoseImage;
+    public TextMeshProUGUI loseText;
     public int cooldown = 1;
     public int forcePerWave = 150;
     public int wallsCount = 10;
@@ -24,7 +26,8 @@ public class WallsManagerScript : MonoBehaviour {
         if (soul.didLose)
         {
             LoseImage.gameObject.SetActive(true);
-            GloablScript.currentWave = 0;
+            loseText.text = string.Format("You Lose\n Score: {0}", GloablScript.currentWave * 100);
+
             if(Input.GetKey(KeyCode.Space))
             {
                 SceneManager.LoadScene("Menu");
